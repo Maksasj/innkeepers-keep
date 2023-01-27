@@ -14,6 +14,9 @@ namespace InkeepersKeep.Core
             _input.Enable();
 
             _player.Initialize();
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

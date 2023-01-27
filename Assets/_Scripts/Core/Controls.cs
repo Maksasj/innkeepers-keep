@@ -38,7 +38,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""LookDirection"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""f07e6f92-13f2-44ff-ac8b-13ff790455fb"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -105,10 +105,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""734591ff-f94b-4b9a-95cd-251e2b396e2c"",
-                    ""path"": ""<Mouse>/position"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""LookDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
