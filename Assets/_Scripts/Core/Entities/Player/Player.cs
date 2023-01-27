@@ -17,9 +17,13 @@ namespace InkeepersKeep.Core.Entities.Player
             if (_movement == null)
                 return;
 
-            _movement.Move(_input.GetMovementDirection());
+            Vector2 movementAxis = _input.GetMovementDirection();
+            //movementAxis = new Vector2(
+            //    movementAxis.x * 10 * Mathf.Sin(Mathf.Deg2Rad * transform.rotation.y),
+            //    movementAxis.y * 10 *Mathf.Cos(Mathf.Deg2Rad *  transform.rotation.y));
+
+            _movement.Move(movementAxis);
             
-            Vector2 inputAxis = _input.GetLookDirection();
         }
     }
 }
