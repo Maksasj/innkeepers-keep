@@ -940,7 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _input: {fileID: 155352226}
   _playerTransform: {fileID: 621747937}
-  _sensitivity: 15
+  _sensitivity: 20
   _minViewDistance: 90
 --- !u!1001 &1176194810
 PrefabInstance:
@@ -971,7 +971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c7c77d218b47e9246868f29062ede994, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.36
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c7c77d218b47e9246868f29062ede994, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1130,7 +1130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355291327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.9, z: 4.49}
+  m_LocalPosition: {x: 0, y: 2.44, z: 4.49}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
