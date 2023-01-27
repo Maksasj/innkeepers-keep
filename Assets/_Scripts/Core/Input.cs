@@ -12,5 +12,6 @@ namespace InkeepersKeep.Core
         public void Disable() => _controls.Disable();
 
         public Vector2 GetMovementDirection() => _controls.Player.Movement.ReadValue<Vector2>();
+        public Vector2 GetLookDirection() => _controls.Player.LookDirection.ReadValue<Vector2>();
     }
 }

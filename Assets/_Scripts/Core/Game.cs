@@ -1,4 +1,4 @@
-using InkeepersKeep.Core.Entities;
+using InkeepersKeep.Core.Entities.Player;
 using UnityEngine;
 
 namespace InkeepersKeep.Core

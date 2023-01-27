@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace InkeepersKeep.Core.Entities
+namespace InkeepersKeep.Core.Entities.Player
 {
     public class Player : MonoBehaviour
     {
@@ -18,6 +18,8 @@ namespace InkeepersKeep.Core.Entities
                 return;
 
             _movement.Move(_input.GetMovementDirection());
+            
+            Vector2 inputAxis = _input.GetLookDirection();
         }
     }
 }
