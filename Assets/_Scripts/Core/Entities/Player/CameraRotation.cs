@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace InkeepersKeep.Core.Entities.Player
@@ -7,23 +5,27 @@ namespace InkeepersKeep.Core.Entities.Player
     public class CameraRotation : MonoBehaviour
     {
         [SerializeField] private Input _input;
-        [SerializeField] private Camera _camera;
         [SerializeField] private Transform _playerTransform;
 
-        private float cameraVerticalRotation = 0f;
-        private float cameraHorizontalRotation = 0f;
+        [SerializeField][Range(0.1f, 1)] private float _sensitivity;
 
-        private void Update()
-        {            
+        [SerializeField][Range(0, 90)] private float _minViewDistance = 90f;
+        private const float MAX_VIEW_DISTANCE = 90f;
+
+        private float _verticalRotation = 0f;
+        private float _horizontalRotation = 0f;
+
+        public void Rotate()
+        {
             Vector2 inputAxis = _input.GetLookDirection();
-            
-            cameraVerticalRotation =    inputAxis.y * - 0.3f;
-            cameraHorizontalRotation =  inputAxis.x * 0.3f;
 
-            cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
+            _verticalRotation = inputAxis.y * -_sensitivity;
+            _horizontalRotation = inputAxis.x * _sensitivity;
 
-            _camera.transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
-            _playerTransform.transform.localEulerAngles = Vector3.up * cameraHorizontalRotation;
+            _verticalRotation = Mathf.Clamp(_verticalRotation, -_minViewDistance, MAX_VIEW_DISTANCE);
+
+            transform.localEulerAngles = Vector3.right * _verticalRotation;
+            _playerTransform.transform.localEulerAngles = Vector3.up * _horizontalRotation;
         }
     }   
 }

@@ -10,7 +10,7 @@ namespace InkeepersKeep.Core.Entities
 
         public void Move(Vector2 direction)
         {
-            _rigidBody.velocity = new Vector3(direction.x * _speed, _rigidBody.velocity.y, direction.y * _speed);
+            _rigidBody.velocity = transform.TransformDirection(direction.x * _speed, _rigidBody.velocity.y, direction.y * _speed);
         }
     }
 }
