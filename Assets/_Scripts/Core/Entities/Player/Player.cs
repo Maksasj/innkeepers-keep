@@ -16,14 +16,17 @@ namespace InkeepersKeep.Core.Entities.Player
         private void Update()
         {
             _camRotation.Rotate();
+
+            if (_movement != null)
+                _movement.Move(_input.GetMovementDirection());
         }
 
-        private void FixedUpdate()
-        {
-            if (_movement == null)
-                return;
+        //private void FixedUpdate()
+        //{
+        //    if (_movement == null)
+        //        return;
 
-            _movement.Move(_input.GetMovementDirection());
-        }
+        //    _movement.Move(_input.GetMovementDirection());
+        //}
     }
 }
