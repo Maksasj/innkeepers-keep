@@ -7,10 +7,11 @@ namespace InkeepersKeep.Core.Entities
     {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _speed;
+        [SerializeField] private float _maxForce;
 
         public void Move(Vector2 direction)
         {
-            _rigidbody.velocity = transform.TransformDirection(direction.x * _speed * Time.fixedDeltaTime, _rigidbody.velocity.y, direction.y * _speed * Time.fixedDeltaTime);
+            _rigidbody.velocity = transform.TransformDirection(new Vector3(direction.x * _speed * Time.deltaTime, _rigidbody.velocity.y, direction.y * _speed * Time.deltaTime));
         }
     }
 }

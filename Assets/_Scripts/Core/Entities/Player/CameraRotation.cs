@@ -14,7 +14,7 @@ namespace InkeepersKeep.Core.Entities.Player
 
         private float _xRotation = 0f;
 
-        public void Rotate()
+        public virtual void Rotate()
         {
             Vector2 cursorDelta = _input.GetLookDirection();
 
@@ -24,7 +24,7 @@ namespace InkeepersKeep.Core.Entities.Player
             _xRotation -= mouseY;
             _xRotation = Mathf.Clamp(_xRotation, -_minViewDistance, MAX_VIEW_DISTANCE);
 
-            transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+            transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             _playerTransform.Rotate(Vector3.up * mouseX);
         }
     }   

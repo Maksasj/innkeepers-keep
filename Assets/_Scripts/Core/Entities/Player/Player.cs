@@ -6,7 +6,6 @@ namespace InkeepersKeep.Core.Entities.Player
     {
         [SerializeField] private Input _input;
         [SerializeField] private CameraRotation _camRotation;
-        [SerializeField] private Gravity _gravity;
         private IMovable _movement;
 
         public void Initialize()
@@ -17,8 +16,10 @@ namespace InkeepersKeep.Core.Entities.Player
         private void Update()
         {
             _camRotation.Rotate();
-            _gravity.Apply();
+        }
 
+        private void FixedUpdate()
+        {
             if (_movement == null)
                 return;
 
