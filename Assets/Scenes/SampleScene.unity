@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 621747933}
-  _speed: 10000
+  _speed: 5000
   _maxForce: 1
 --- !u!1 &640829673
 GameObject:
