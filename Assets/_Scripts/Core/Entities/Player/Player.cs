@@ -1,21 +1,38 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
 namespace InkeepersKeep.Core.Entities.Player
 {
     [RequireComponent(typeof(GroundCheck))]
     [RequireComponent(typeof(Jumping))]
-    public class Player : MonoBehaviour
+    public class Player : NetworkBehaviour
     {
         [SerializeField] private Input _input;
         [SerializeField] private CameraRotation _camRotation;
         [SerializeField] private GroundCheck _groundCheck;
         [SerializeField] private Jumping _jumping;
+        [SerializeField] private Camera _headCam;
         private IMovable _movement;
+
+        public override void OnNetworkSpawn()
+        {
+            if (!IsOwner)
+            {
+                Destroy(_headCam);
+                Destroy(this);
+            }
+
+            Initialize();
+        }
 
         public void Initialize()
         {
+            _input.Initialize();
+            _input.Enable();
+
             _movement = GetComponent<IMovable>();
+            
             _input.Controls.Player.Jump.performed += Jump;
         }
 
