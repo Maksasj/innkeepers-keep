@@ -330,6 +330,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: steak
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4232845c19d4402419be5926d6824aff, type: 3}
 --- !u!1001 &462356926
@@ -387,6 +395,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: steak
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4232845c19d4402419be5926d6824aff, type: 3}
 --- !u!1 &621747931
@@ -404,6 +420,8 @@ GameObject:
   - component: {fileID: 621747934}
   - component: {fileID: 621747939}
   - component: {fileID: 621747940}
+  - component: {fileID: 621747941}
+  - component: {fileID: 621747942}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -523,6 +541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _input: {fileID: 155352226}
   _camRotation: {fileID: 963194229}
+  _groundCheck: {fileID: 621747942}
+  _jumping: {fileID: 621747941}
 --- !u!114 &621747940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +556,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 621747933}
-  _speed: 10000
+  _speed: 5
+--- !u!114 &621747941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621747931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ad7fb79d521e0489decc2e03de46a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 621747933}
+  _force: 6
+--- !u!114 &621747942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621747931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0e8600f26a5b44b86d118aa12f652d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundCheckTransform: {fileID: 984021630}
+  _radius: 0.15
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 72
 --- !u!1 &640829673
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +599,7 @@ GameObject:
   - component: {fileID: 640829676}
   - component: {fileID: 640829675}
   - component: {fileID: 640829674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Steak (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +757,7 @@ GameObject:
   - component: {fileID: 827553450}
   - component: {fileID: 827553449}
   - component: {fileID: 827553448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Steak (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +821,7 @@ GameObject:
   - component: {fileID: 890973154}
   - component: {fileID: 890973153}
   - component: {fileID: 890973152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Steak (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,6 +1078,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c7c77d218b47e9246868f29062ede994, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: c7c77d218b47e9246868f29062ede994, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2699092741681021261, guid: c7c77d218b47e9246868f29062ede994, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c7c77d218b47e9246868f29062ede994, type: 3}
@@ -1085,6 +1144,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: steak
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4232845c19d4402419be5926d6824aff, type: 3}
 --- !u!4 &1332775653 stripped
@@ -1103,7 +1170,7 @@ GameObject:
   - component: {fileID: 1355291330}
   - component: {fileID: 1355291329}
   - component: {fileID: 1355291328}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,6 +1277,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4232845c19d4402419be5926d6824aff, type: 3}
       propertyPath: m_Name
       value: steak
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 4232845c19d4402419be5926d6824aff, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4232845c19d4402419be5926d6824aff, type: 3}
@@ -1321,7 +1396,7 @@ GameObject:
   - component: {fileID: 1594571325}
   - component: {fileID: 1594571324}
   - component: {fileID: 1594571323}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Steak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1424,7 +1499,7 @@ GameObject:
   - component: {fileID: 2025121053}
   - component: {fileID: 2025121052}
   - component: {fileID: 2025121051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
