@@ -556,7 +556,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 621747933}
-  _speed: 5
+  _speed: 10
+  _acceleration: 5
+  _decceleration: 2
+  _velocityPower: 0.8
 --- !u!114 &621747941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 621747933}
-  _force: 6
+  _force: 7.5
 --- !u!114 &621747942
 MonoBehaviour:
   m_ObjectHideFlags: 0
