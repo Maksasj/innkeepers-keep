@@ -9,19 +9,19 @@ public class PlayerCursor : MonoBehaviour
 
     [SerializeField] private Transform _hands;
 
-    private GameObject _activeGameObject;
+    private Rigidbody _activeRigidbody;
 
     private bool _dragging;
 
     public void Update() {
         if(_dragging == false) return;
-        
-        _activeGameObject.transform.position = _hands.transform.position;
+
+        _activeRigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
+        _activeRigidbody.MovePosition(_hands.transform.position);
     }
 
     public void StartDragging()
     {
-
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, transform.forward * 100f, Color.yellow);
         
@@ -33,13 +33,20 @@ public class PlayerCursor : MonoBehaviour
                 _hands.transform.position = hit.point;
 
                 _dragging = true;
-                _activeGameObject = pickedGameObject;
+                _activeRigidbody = pickedGameObject.GetComponent<Rigidbody>();
+                _activeRigidbody.useGravity = false;
             }
         }       
     }
 
     public void StopDragging()
     {
-        _dragging = false;
+        if(_dragging)
+        {
+            _dragging = false;
+
+            _activeRigidbody.useGravity = true;
+            _activeRigidbody.AddForce(_activeRigidbody.velocity, ForceMode.Impulse);
+        }
     }
 }
