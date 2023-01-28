@@ -7,7 +7,6 @@ namespace InkeepersKeep.Core.Entities
     {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _speed;
-        [SerializeField] private float _maxForce;
 
         public void Move(Vector2 direction)
         {
