@@ -980,7 +980,7 @@ MonoBehaviour:
   _camRotation: {fileID: 1599355880}
   _groundCheck: {fileID: 621747942}
   _jumping: {fileID: 621747941}
-  _playerCursor: {fileID: 514302724}
+  _itemDragging: {fileID: 514302724}
 --- !u!114 &621747940
 MonoBehaviour:
   m_ObjectHideFlags: 0

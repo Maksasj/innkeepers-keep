@@ -6,6 +6,7 @@ namespace InkeepersKeep.Core.Entities.Items
     {
         [SerializeField] private GameObject _ItemUI;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private float _dropForce = 5f;
         private Transform _grabPoint;
 
         private void FixedUpdate()
@@ -21,12 +22,19 @@ namespace InkeepersKeep.Core.Entities.Items
         {
             _grabPoint = grabPoint;
             _rigidbody.useGravity = false;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
         public void Drop()
         {
-            _grabPoint = null;
             _rigidbody.useGravity = true;
+            _rigidbody.constraints = RigidbodyConstraints.None;
+
+            Vector3 moveDirection = (_grabPoint.position - transform.position).normalized;
+
+            _rigidbody.velocity = moveDirection * _dropForce;
+
+            _grabPoint = null;
         }
 
         public void Hover()

@@ -16,7 +16,7 @@ namespace InkeepersKeep.Core.Entities.Player
 
         public virtual void Rotate()
         {
-            Vector2 cursorDelta = _input.GetLookDirection();
+            Vector2 cursorDelta = _input.GetDeltaMouse();
 
             float mouseX = cursorDelta.x * _sensitivity * Time.deltaTime;
             float mouseY = cursorDelta.y * _sensitivity * Time.deltaTime;

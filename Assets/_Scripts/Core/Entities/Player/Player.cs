@@ -11,7 +11,7 @@ namespace InkeepersKeep.Core.Entities.Player
         [SerializeField] private CameraRotation _camRotation;
         [SerializeField] private GroundCheck _groundCheck;
         [SerializeField] private Jumping _jumping;
-        [SerializeField] private Dragging _playerCursor;
+        [SerializeField] private ItemDragging _itemDragging;
 
         private IMovable _movement;
 
@@ -53,10 +53,10 @@ namespace InkeepersKeep.Core.Entities.Player
         private void TryInteract(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
-                _playerCursor.StartDragging();
+                _itemDragging.StartDragging();
 
             if (ctx.canceled)
-                _playerCursor.StopDragging();
+                _itemDragging.StopDragging();
         }
     }
 }

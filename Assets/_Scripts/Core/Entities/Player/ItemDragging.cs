@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InkeepersKeep.Core.Entities
 {
-    public class Dragging : MonoBehaviour
+    public class ItemDragging : MonoBehaviour
     {
         [SerializeField] private Transform _hands;
         [SerializeField] private float _grabDistance;
