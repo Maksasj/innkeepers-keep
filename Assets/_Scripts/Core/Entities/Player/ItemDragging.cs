@@ -9,7 +9,10 @@ namespace InkeepersKeep.Core.Entities
         [SerializeField] private float _grabDistance;
         [SerializeField] private LayerMask _grabbableObjectLayer;
 
+        [SerializeField] private Collider _playerCollider;
+
         private IGrabbable _currentItem;
+        private Collider _currentItemCollider;
 
         private void Update()
         {
@@ -25,10 +28,12 @@ namespace InkeepersKeep.Core.Entities
             {
                 if (hit.collider.TryGetComponent(out IGrabbable item))
                 {
+                    Physics.IgnoreCollision(_playerCollider, hit.collider, true);
                     _hands.transform.position = hit.transform.position;
                     item.Grab(_hands);
 
                     _currentItem = item;
+                    _currentItemCollider = hit.collider;
                 }
             }
         }
@@ -39,7 +44,10 @@ namespace InkeepersKeep.Core.Entities
                 return;
 
             _currentItem.Drop();
+            Physics.IgnoreCollision(_playerCollider, _currentItemCollider, false);
+
             _currentItem = null;
+            _currentItemCollider = null;
         }
     }
 }
