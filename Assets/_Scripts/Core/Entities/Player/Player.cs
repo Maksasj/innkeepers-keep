@@ -58,7 +58,22 @@ namespace InkeepersKeep.Core.Entities.Player
             if (_movement == null)
                 return;
 
+            PlayerMoveServerRpc(_input.GetMovementDirection());
+
             _movement.Move(_input.GetMovementDirection());
+        }
+
+        [ServerRpc]
+        private void PlayerMoveServerRpc(Vector3 direction)
+        {
+            PlayerMoveClientRpc(direction);
+        }
+
+        [ClientRpc]
+        private void PlayerMoveClientRpc(Vector3 direction)
+        {
+            if (!IsOwner)
+                GetComponent<IMovable>().Move(direction);
         }
 
         private void Jump(InputAction.CallbackContext ctx)
