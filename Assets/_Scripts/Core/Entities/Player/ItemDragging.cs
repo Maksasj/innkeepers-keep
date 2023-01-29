@@ -25,7 +25,7 @@ namespace InkeepersKeep.Core.Entities
             {
                 if (hit.collider.TryGetComponent(out IGrabbable item))
                 {
-                    _hands.transform.position = hit.point;
+                    _hands.transform.position = hit.transform.position;
                     item.Grab(_hands);
 
                     _currentItem = item;

@@ -470,6 +470,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 152709624}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!1 &155352224
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +840,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 585121056}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!4 &609603766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
@@ -1711,7 +1713,7 @@ Transform:
   - {fileID: 304682272}
   - {fileID: 1612989262}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -39.89, z: 0}
 --- !u!114 &977709669
 MonoBehaviour:
@@ -1728,6 +1730,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 977709666}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!1 &981416882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1795,7 @@ Transform:
   - {fileID: 848429326}
   - {fileID: 723703808}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -159.6, z: 0}
 --- !u!114 &981416887
 MonoBehaviour:
@@ -1809,6 +1812,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 981416884}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!1 &984021629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,6 +1925,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 1033344799}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!1001 &1078551169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2159,6 +2164,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 1155348189}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!4 &1190178089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
@@ -2860,6 +2866,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 1744951438}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!1001 &1780421643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3006,6 +3013,7 @@ MonoBehaviour:
   _ItemUI: {fileID: 0}
   _rigidbody: {fileID: 1790112270}
   _dropForce: 5
+  _dropMinDistance: 0.25
 --- !u!1 &1842014352
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ namespace InkeepersKeep.Core.Entities.Items
         [SerializeField] private GameObject _ItemUI;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _dropForce = 5f;
+        [SerializeField] private float _dropMinDistance = 0.2f;
+
         private Transform _grabPoint;
 
         private void FixedUpdate()
@@ -30,9 +32,15 @@ namespace InkeepersKeep.Core.Entities.Items
             _rigidbody.useGravity = true;
             _rigidbody.constraints = RigidbodyConstraints.None;
 
-            Vector3 moveDirection = (_grabPoint.position - transform.position).normalized;
-
-            _rigidbody.velocity = moveDirection * _dropForce;
+            if (Vector3.Distance(transform.position, _grabPoint.position) > _dropMinDistance)
+            {
+                Vector3 moveDirection = (_grabPoint.position - transform.position).normalized;
+                _rigidbody.velocity = moveDirection * _dropForce;
+            }
+            else
+            {
+                _rigidbody.velocity = Vector3.zero;
+            }
 
             _grabPoint = null;
         }
