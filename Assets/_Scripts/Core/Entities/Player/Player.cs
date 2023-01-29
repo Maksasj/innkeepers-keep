@@ -12,15 +12,16 @@ namespace InkeepersKeep.Core.Entities.Player
         [SerializeField] private CameraRotation _camRotation;
         [SerializeField] private GroundCheck _groundCheck;
         [SerializeField] private Jumping _jumping;
-        [SerializeField] private Camera _headCam;
+
+        [SerializeField] private GameObject _head;
         private IMovable _movement;
 
         public override void OnNetworkSpawn()
         {
             if (!IsOwner)
             {
-                Destroy(_headCam);
-                Destroy(this);
+                Destroy(_head);
+                return;
             }
 
             Initialize();
@@ -43,11 +44,17 @@ namespace InkeepersKeep.Core.Entities.Player
 
         private void Update()
         {
+            if (!IsOwner)
+                return;
+
             _camRotation.Rotate();
         }
 
         private void FixedUpdate()
         {
+            if (!IsOwner)
+                return;
+
             if (_movement == null)
                 return;
 

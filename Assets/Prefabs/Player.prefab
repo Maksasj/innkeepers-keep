@@ -149,10 +149,10 @@ GameObject:
   - component: {fileID: 2120382335953057904}
   - component: {fileID: 2120382335953057905}
   - component: {fileID: 2120382335953057906}
-  - component: {fileID: 2120382335953057907}
   - component: {fileID: -4317475492602408292}
+  - component: {fileID: 2120382335953057907}
   - component: {fileID: -5736939779064246383}
-  - component: {fileID: -2923875066253300886}
+  - component: {fileID: 7883855372563020655}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -274,7 +274,7 @@ MonoBehaviour:
   _camRotation: {fileID: 2120382335879252961}
   _groundCheck: {fileID: 2120382335953057906}
   _jumping: {fileID: 2120382335953057905}
-  _headCam: {fileID: 2120382335879252967}
+  _head: {fileID: 2120382337390058866}
 --- !u!114 &2120382335953057904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +323,18 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 72
+--- !u!114 &-4317475492602408292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120382335953057871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7318eab882889e4d944118e5d326c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2120382335953057907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,18 +351,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-4317475492602408292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120382335953057871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7318eab882889e4d944118e5d326c07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5736939779064246383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &-2923875066253300886
+--- !u!114 &7883855372563020655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2120382337390058867}
   m_Layer: 0
-  m_Name: CameraHolder
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
