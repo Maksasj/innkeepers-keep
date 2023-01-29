@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1172005}
   - component: {fileID: 1172007}
   - component: {fileID: 1172006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +265,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeerMug
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
 --- !u!1 &88988727
@@ -392,27 +400,14 @@ GameObject:
   - component: {fileID: 152709626}
   - component: {fileID: 152709625}
   - component: {fileID: 152709624}
-  - component: {fileID: 152709623}
-  m_Layer: 0
+  - component: {fileID: 152709627}
+  m_Layer: 6
   m_Name: BeerMugItem (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &152709623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152709622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 1575957025}
 --- !u!54 &152709624
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -426,7 +421,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &152709625
@@ -460,6 +455,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -35.49, z: 0}
+--- !u!114 &152709627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152709622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 152709624}
 --- !u!1 &155352224
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199826620}
   - component: {fileID: 199826621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304682272}
   - component: {fileID: 304682271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,6 +670,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hands: {fileID: 88988728}
+  _grabDistance: 8
+  _grabbableObjectLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &523290174
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +685,7 @@ GameObject:
   - component: {fileID: 523290175}
   - component: {fileID: 523290178}
   - component: {fileID: 523290177}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +769,7 @@ GameObject:
   - component: {fileID: 585121057}
   - component: {fileID: 585121056}
   - component: {fileID: 585121059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BeerMugItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +789,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &585121057
@@ -819,10 +832,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 585121055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 1235006070}
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 585121056}
 --- !u!4 &609603766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
@@ -1074,6 +1088,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeerMug
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
 --- !u!1 &705507993
@@ -1181,7 +1203,7 @@ GameObject:
   - component: {fileID: 717214688}
   - component: {fileID: 717214690}
   - component: {fileID: 717214689}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1291,7 @@ GameObject:
   - component: {fileID: 725997250}
   - component: {fileID: 725997252}
   - component: {fileID: 725997251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,7 +1374,7 @@ GameObject:
   - component: {fileID: 744788010}
   - component: {fileID: 744788012}
   - component: {fileID: 744788011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,6 +1505,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeerMug
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
 --- !u!1 &848429324
@@ -1495,7 +1525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848429326}
   - component: {fileID: 848429325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1626,27 +1656,14 @@ GameObject:
   - component: {fileID: 977709668}
   - component: {fileID: 977709667}
   - component: {fileID: 977709666}
-  - component: {fileID: 977709665}
-  m_Layer: 0
+  - component: {fileID: 977709669}
+  m_Layer: 6
   m_Name: BeerMugItem (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &977709665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977709664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 304682270}
 --- !u!54 &977709666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1660,7 +1677,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &977709667
@@ -1694,6 +1711,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -39.89, z: 0}
+--- !u!114 &977709669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977709664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 977709666}
 --- !u!1 &981416882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,27 +1736,14 @@ GameObject:
   - component: {fileID: 981416886}
   - component: {fileID: 981416885}
   - component: {fileID: 981416884}
-  - component: {fileID: 981416883}
-  m_Layer: 0
+  - component: {fileID: 981416887}
+  m_Layer: 6
   m_Name: BeerMugItem (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &981416883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981416882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 848429324}
 --- !u!54 &981416884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1739,7 +1757,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &981416885
@@ -1773,6 +1791,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -159.6, z: 0}
+--- !u!114 &981416887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981416882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 981416884}
 --- !u!1 &984021629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1848,7 @@ GameObject:
   - component: {fileID: 1033344800}
   - component: {fileID: 1033344799}
   - component: {fileID: 1033344802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SalmonItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1836,7 +1868,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &1033344800
@@ -1879,10 +1911,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1033344798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 1212553694}
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 1033344799}
 --- !u!1001 &1078551169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1942,6 +1975,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeerMug
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
 --- !u!4 &1078551170 stripped
@@ -1960,7 +2001,7 @@ GameObject:
   - component: {fileID: 1098725194}
   - component: {fileID: 1098725196}
   - component: {fileID: 1098725195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2044,7 +2085,7 @@ GameObject:
   - component: {fileID: 1155348190}
   - component: {fileID: 1155348189}
   - component: {fileID: 1155348192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PorkLegItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2064,7 +2105,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &1155348190
@@ -2107,10 +2148,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1155348188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 199826619}
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 1155348189}
 --- !u!4 &1190178089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
@@ -2126,7 +2168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1212553695}
   - component: {fileID: 1212553696}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2172,7 +2214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1235006071}
   - component: {fileID: 1235006072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2224,7 +2266,7 @@ GameObject:
   - component: {fileID: 1377245310}
   - component: {fileID: 1377245312}
   - component: {fileID: 1377245311}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2354,6 +2396,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
       propertyPath: m_Name
       value: BeerMug
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
@@ -2561,7 +2611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575957027}
   - component: {fileID: 1575957026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2713,6 +2763,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Salmon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd7b7ab9f7c1cf64386c497647266c42, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: fd7b7ab9f7c1cf64386c497647266c42, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd7b7ab9f7c1cf64386c497647266c42, type: 3}
 --- !u!1 &1744951436
@@ -2726,27 +2784,14 @@ GameObject:
   - component: {fileID: 1744951440}
   - component: {fileID: 1744951439}
   - component: {fileID: 1744951438}
-  - component: {fileID: 1744951437}
-  m_Layer: 0
+  - component: {fileID: 1744951441}
+  m_Layer: 6
   m_Name: BeerMugItem (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1744951437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744951436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 2116050259}
 --- !u!54 &1744951438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2760,7 +2805,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &1744951439
@@ -2794,6 +2839,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 29.34, z: 0}
+--- !u!114 &1744951441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744951436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 1744951438}
 --- !u!1001 &1780421643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2849,6 +2908,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PorkLegModel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24e0f97191f5324459802588f390c597, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 24e0f97191f5324459802588f390c597, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e0f97191f5324459802588f390c597, type: 3}
 --- !u!1 &1790112268
@@ -2862,27 +2929,14 @@ GameObject:
   - component: {fileID: 1790112272}
   - component: {fileID: 1790112271}
   - component: {fileID: 1790112270}
-  - component: {fileID: 1790112269}
-  m_Layer: 0
+  - component: {fileID: 1790112273}
+  m_Layer: 6
   m_Name: BeerMugItem (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1790112269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790112268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0be15510027be458ac7d48b03d1aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 1875165765}
 --- !u!54 &1790112270
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2896,7 +2950,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &1790112271
@@ -2930,6 +2984,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 160.64, z: 0}
+--- !u!114 &1790112273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790112268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ItemUI: {fileID: 0}
+  _rigidbody: {fileID: 1790112270}
 --- !u!1 &1842014352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,7 +3105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875165767}
   - component: {fileID: 1875165766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3132,6 +3200,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeerMug
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
 --- !u!1 &2112414724
@@ -3145,7 +3221,7 @@ GameObject:
   - component: {fileID: 2112414725}
   - component: {fileID: 2112414727}
   - component: {fileID: 2112414726}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3227,7 +3303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116050261}
   - component: {fileID: 2116050260}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemUIHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
