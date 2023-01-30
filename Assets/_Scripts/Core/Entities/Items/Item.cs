@@ -27,14 +27,18 @@ namespace InkeepersKeep.Core.Entities.Items
         [SerializeField] private float      _dropMinDistance = 0.2f;
             
         /* Item grabbing */
-        [SerializeField] private float _interpolationSpeed = 10f;
-        private Transform _grabPoint;
-        private bool _isDragging = false;
+        [SerializeField] private float      _interpolationSpeed = 10f;
+        private Transform                   _grabPoint;
+        private bool                        _isDragging = false;
 
         /* General Item information */
-        [SerializeField] private string _itemName;
-        [SerializeField] private ItemType _itemType;
-        [SerializeField] private string _itemDescription;
+        [SerializeField] private string     _itemName;
+        [SerializeField] private ItemType   _itemType;
+        [SerializeField] private string     _itemDescription;
+
+        /* Item connector thing */
+        public bool _isCollidingWithItemConnector;
+        public ItemConnector _itemConnector;
 
         public void Start()
         {
@@ -67,17 +71,23 @@ namespace InkeepersKeep.Core.Entities.Items
 
         public void Drop()
         {
-            _rigidbody.useGravity = true;
-            _rigidbody.constraints = RigidbodyConstraints.None;
+            if(_isCollidingWithItemConnector == true)
+            {
+                _itemConnector.Connect(GetComponent<Item>());
+            } else
+            {
+                _rigidbody.useGravity = true;
+                _rigidbody.constraints = RigidbodyConstraints.None;
 
-            if (Vector3.Distance(transform.position, _grabPoint.position) > _dropMinDistance)
-            {
-                Vector3 moveDirection = (_grabPoint.position - transform.position);
-                _rigidbody.velocity = moveDirection * _dropForce;
-            }
-            else
-            {
-                _rigidbody.velocity = Vector3.zero;
+                if (Vector3.Distance(transform.position, _grabPoint.position) > _dropMinDistance)
+                {
+                    Vector3 moveDirection = (_grabPoint.position - transform.position);
+                    _rigidbody.velocity = moveDirection * _dropForce;
+                }
+                else
+                {
+                    _rigidbody.velocity = Vector3.zero;
+                }
             }
 
             _grabPoint = null;

@@ -20,6 +20,7 @@ namespace InkeepersKeep.Core.Entities
                 previousItem?.Unhover();
                 return;
             }
+
             if (!hit.collider.TryGetComponent(out IHoverable item))
             {
                 previousItem?.Unhover();
