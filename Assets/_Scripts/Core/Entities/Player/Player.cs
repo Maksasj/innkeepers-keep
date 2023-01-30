@@ -9,18 +9,27 @@ namespace InkeepersKeep.Core.Entities.Player
     public class Player : NetworkBehaviour
     {
         [SerializeField] private Input _input;
-        [SerializeField] private CameraRotation _camRotation;
         [SerializeField] private GroundCheck _groundCheck;
         [SerializeField] private Jumping _jumping;
 
-        [SerializeField] private GameObject _head;
-        private IMovable _movement;
+        [SerializeField] private GameObject _headCamera;
+        private CameraRotation _camRotation;
+        private IMovable _movable;
+
+        private Vector2 _movementDirection;
+        private Vector2 _deltaMouse;
+
+        private void Awake() 
+        { 
+            _movable = GetComponent<IMovable>();
+            _camRotation = GetComponentInChildren<CameraRotation>();
+        }
 
         public override void OnNetworkSpawn()
         {
             if (!IsOwner)
             {
-                Destroy(_head);
+                Destroy(_headCamera);
                 return;
             }
 
@@ -31,8 +40,6 @@ namespace InkeepersKeep.Core.Entities.Player
         {
             _input.Initialize();
             _input.Enable();
-
-            _movement = GetComponent<IMovable>();
             
             _input.Controls.Player.Jump.performed += Jump;
         }
@@ -47,7 +54,14 @@ namespace InkeepersKeep.Core.Entities.Player
             if (!IsOwner)
                 return;
 
-            _camRotation.Rotate();
+            _deltaMouse = _input.GetDeltaMouse();
+            _camRotation.Rotate(_deltaMouse);
+
+            if (_deltaMouse != Vector2.zero)
+            {
+                //_camRotation.Rotate(_deltaMouse);
+                PlayerRotateCameraServerRpc(_deltaMouse);
+            }
         }
 
         private void FixedUpdate()
@@ -55,12 +69,16 @@ namespace InkeepersKeep.Core.Entities.Player
             if (!IsOwner)
                 return;
 
-            if (_movement == null)
+            if (_movable == null)
                 return;
 
-            PlayerMoveServerRpc(_input.GetMovementDirection());
+            _movementDirection = _input.GetMovementDirection();
 
-            _movement.Move(_input.GetMovementDirection());
+            if (_movementDirection != Vector2.zero)
+            {
+                PlayerMoveServerRpc(_input.GetMovementDirection());
+                _movable.Move(_input.GetMovementDirection());
+            }
         }
 
         [ServerRpc]
@@ -73,7 +91,20 @@ namespace InkeepersKeep.Core.Entities.Player
         private void PlayerMoveClientRpc(Vector3 direction)
         {
             if (!IsOwner)
-                GetComponent<IMovable>().Move(direction);
+                _movable.Move(direction);
+        }
+
+        [ServerRpc]
+        private void PlayerRotateCameraServerRpc(Vector2 deltaMouse)
+        {
+            PlayerRotateCameraClientRpc(deltaMouse);
+        }
+
+        [ClientRpc]
+        private void PlayerRotateCameraClientRpc(Vector2 deltaMouse)
+        {
+            if (!IsOwner)
+                _camRotation.Rotate(deltaMouse);
         }
 
         private void Jump(InputAction.CallbackContext ctx)

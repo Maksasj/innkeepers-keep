@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 2120382335879252960}
   - component: {fileID: 2120382335879252967}
   - component: {fileID: 2120382335879252966}
-  - component: {fileID: 2120382335879252961}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -116,22 +115,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120382335879252965}
   m_Enabled: 1
---- !u!114 &2120382335879252961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120382335879252965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74002d4e08739d94ab6c947b864bbc78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _input: {fileID: -4317475492602408292}
-  _playerTransform: {fileID: 2120382335953057909}
-  _sensitivity: 10
-  _minViewDistance: 90
 --- !u!1 &2120382335953057871
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,8 +129,8 @@ GameObject:
   - component: {fileID: 2120382335953057865}
   - component: {fileID: 2120382335953057866}
   - component: {fileID: 2120382335953057907}
-  - component: {fileID: 2419691436190502965}
-  - component: {fileID: 8779946700226692258}
+  - component: {fileID: 1140750284197629734}
+  - component: {fileID: 7376401443380320}
   - component: {fileID: 2120382335953057911}
   - component: {fileID: -4317475492602408292}
   - component: {fileID: 2120382335953057904}
@@ -274,7 +257,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &2419691436190502965
+--- !u!114 &1140750284197629734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,7 +283,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &8779946700226692258
+--- !u!114 &7376401443380320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,10 +308,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: -4317475492602408292}
-  _camRotation: {fileID: 2120382335879252961}
   _groundCheck: {fileID: 2120382335953057906}
   _jumping: {fileID: 2120382335953057905}
-  _head: {fileID: 2120382337390058866}
+  _headCamera: {fileID: 2120382335879252965}
 --- !u!114 &-4317475492602408292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120382337390058867}
+  - component: {fileID: 8912405178691928581}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -504,3 +487,19 @@ Transform:
   m_Father: {fileID: 2120382335953057909}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8912405178691928581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120382337390058866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74002d4e08739d94ab6c947b864bbc78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: -4317475492602408292}
+  _playerTransform: {fileID: 2120382335953057909}
+  _sensitivity: 10
+  _minViewDistance: 90

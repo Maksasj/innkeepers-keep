@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LookDirection",
+                    "name": "Mouse",
                     "type": "PassThrough",
                     "id": "f07e6f92-13f2-44ff-ac8b-13ff790455fb",
                     "expectedControlType": "Vector2",
@@ -96,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "LookDirection",
+                    "action": "Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

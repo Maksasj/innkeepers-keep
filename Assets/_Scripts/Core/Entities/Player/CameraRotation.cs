@@ -14,12 +14,10 @@ namespace InkeepersKeep.Core.Entities.Player
 
         private float _xRotation = 0f;
 
-        public virtual void Rotate()
+        public void Rotate(Vector2 deltaMouse)
         {
-            Vector2 cursorDelta = _input.GetLookDirection();
-
-            float mouseX = cursorDelta.x * _sensitivity * Time.deltaTime;
-            float mouseY = cursorDelta.y * _sensitivity * Time.deltaTime;
+            float mouseX = deltaMouse.x * _sensitivity * Time.deltaTime;
+            float mouseY = deltaMouse.y * _sensitivity * Time.deltaTime;
 
             _xRotation -= mouseY;
             _xRotation = Mathf.Clamp(_xRotation, -_minViewDistance, MAX_VIEW_DISTANCE);
