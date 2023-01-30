@@ -14,11 +14,6 @@ namespace InkeepersKeep.Core.Entities
         private IGrabbable _currentItem;
         private Collider _currentItemCollider;
 
-        private void Update()
-        {
-            Debug.DrawRay(transform.position, transform.forward * _grabDistance, Color.yellow);
-        }
-
         public void StartDragging()
         {
             Ray ray = new Ray(transform.position, transform.forward);

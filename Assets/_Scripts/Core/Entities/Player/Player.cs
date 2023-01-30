@@ -11,7 +11,9 @@ namespace InkeepersKeep.Core.Entities.Player
         [SerializeField] private CameraRotation _camRotation;
         [SerializeField] private GroundCheck _groundCheck;
         [SerializeField] private Jumping _jumping;
+        
         [SerializeField] private ItemDragging _itemDragging;
+        [SerializeField] private ItemHovering _itemHovering;
 
         private IMovable _movement;
 

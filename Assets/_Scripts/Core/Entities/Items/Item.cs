@@ -1,17 +1,50 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace InkeepersKeep.Core.Entities.Items
 {
-    public class Item : MonoBehaviour, IGrabbable
-    {
-        [SerializeField] private GameObject _ItemUI;
-        [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private float _dropForce = 5f;
-        [SerializeField] private float _dropMinDistance = 0.2f;
+    public class Item : MonoBehaviour, IGrabbable, IColorTintable, IHoverable
+    {   
+        /* Needed for color tint */
+        [SerializeField] private Renderer   _renderer;
+        [SerializeField] private Shader     _itemActiveShader;
+        [SerializeField] private Shader     _itemDefaultShader;
+        [SerializeField] private float      _itemTintStrength = 0.1f;
+        [SerializeField] private Color      _itemTintColor = new Color(1.0f, 1.0f, 1.0f);
 
+        /* Needed for item hovering ui and description */
+        [SerializeField] private UIDocument _itemHoveringUI;
+        private VisualElement               _itemInfoUIWindow;
+        private Label                       _itemInfoUILabelName;
+        private Label                       _itemInfoUILabelItemType;
+        private Label                       _itemInfoUILabelDescription;
+        private float                       _itemInfoUIOpacity = 0;
+        [SerializeField] private float      _itemInfoUITransitionSpeed = 0.05f;
+
+        /* Physics */
+        [SerializeField] private Rigidbody  _rigidbody;
+        [SerializeField] private float      _dropForce = 5f;
+        [SerializeField] private float      _dropMinDistance = 0.2f;
+            
+        /* Item grabbing */
         [SerializeField] private float _interpolationSpeed = 10f;
-
         private Transform _grabPoint;
+        private bool _isDragging = false;
+
+        /* General Item information */
+        [SerializeField] private string _itemName;
+        [SerializeField] private ItemType _itemType;
+        [SerializeField] private string _itemDescription;
+
+        public void Start()
+        {
+            var rootElement = _itemHoveringUI.rootVisualElement;
+
+            _itemInfoUIWindow = rootElement.Q<VisualElement>("ItemInfoWindow");
+            _itemInfoUILabelName = rootElement.Q<Label>("ItemName");
+            _itemInfoUILabelItemType = rootElement.Q<Label>("ItemType");
+            _itemInfoUILabelDescription = rootElement.Q<Label>("ItemDescription");            
+        }
 
         private void FixedUpdate()
         {
@@ -27,6 +60,9 @@ namespace InkeepersKeep.Core.Entities.Items
             _grabPoint = grabPoint;
             _rigidbody.useGravity = false;
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+            ChangeTint();
+            _isDragging = true;
         }
 
         public void Drop()
@@ -45,16 +81,63 @@ namespace InkeepersKeep.Core.Entities.Items
             }
 
             _grabPoint = null;
+
+            _isDragging = false;
+            ReturnDefaultTint();
         }
 
         public void Hover()
         {
-            _ItemUI.SetActive(true);
+            if (!_isDragging)
+                ShowItemInfoUI();
+            else
+                UnShowItemInfoUI();
+
+            /* Lets change item color tint */
+            ChangeTint();
         }
 
         public void Unhover()
         {
-            _ItemUI.SetActive(false);
+            /* Item info ui */
+            UnShowItemInfoUI();
+
+            if (_isDragging) return;
+
+            /* Lets change item color tint*/
+            ReturnDefaultTint();
         }
+
+        private void ShowItemInfoUI()
+        {
+            /* Item info ui */
+            _itemInfoUIWindow.visible = true;
+            _itemInfoUIWindow.style.opacity = _itemInfoUIOpacity;
+
+            if (_itemInfoUIOpacity < 1.0f) _itemInfoUIOpacity += _itemInfoUITransitionSpeed;
+
+            _itemInfoUILabelName.text = _itemName;
+            _itemInfoUILabelItemType.text = _itemType.ToString();
+            _itemInfoUILabelDescription.text = _itemDescription;
+        }
+
+        private void UnShowItemInfoUI()
+        {
+            _itemInfoUIWindow.style.opacity = _itemInfoUIOpacity;
+            if (_itemInfoUIOpacity > 0.0f) _itemInfoUIOpacity -= _itemInfoUITransitionSpeed;
+            if (_itemInfoUIOpacity <= 0)
+            {
+                _itemInfoUIWindow.visible = false;
+            }
+        }
+
+        public void ChangeTint()
+        {
+            _renderer.material.shader = _itemActiveShader;
+            _renderer.material.SetColor("_ItemTintColorOverlay", _itemTintColor);
+            _renderer.material.SetFloat("_ItemTintStrength", _itemTintStrength);
+        }
+
+        public void ReturnDefaultTint() => _renderer.material.shader = _itemDefaultShader;
     }
 }
