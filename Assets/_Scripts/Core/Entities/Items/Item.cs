@@ -37,6 +37,7 @@ namespace InkeepersKeep.Core.Entities.Items
         [SerializeField] private string     _itemDescription;
 
         /* Item connector thing */
+        public bool _isConnectedToConnector;
         public bool _isCollidingWithItemConnector;
         public ItemConnector _itemConnector;
 
@@ -61,6 +62,11 @@ namespace InkeepersKeep.Core.Entities.Items
 
         public void Grab(Transform grabPoint)
         {
+            if(_isConnectedToConnector && _itemConnector != null)
+            {
+                _itemConnector.Detach();
+            }
+
             _grabPoint = grabPoint;
             _rigidbody.useGravity = false;
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -73,7 +79,8 @@ namespace InkeepersKeep.Core.Entities.Items
         {
             if(_isCollidingWithItemConnector == true)
             {
-                _itemConnector.Connect(GetComponent<Item>());
+                _itemConnector.Attach(GetComponent<Item>());
+                _isConnectedToConnector = true;
             } else
             {
                 _rigidbody.useGravity = true;

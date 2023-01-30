@@ -13,14 +13,47 @@ namespace InkeepersKeep.Core.Entities
         [SerializeField] private MeshCollider   _meshCollider;
 
         public bool _colliding;
+        private bool _available = true;
 
-        public void Connect(Item item)
+        private Item _connectedItem;
+
+        public void FixedUpdate()
         {
+            if (_available) return;
+
+            _connectedItem.transform.position = transform.position;
+            _connectedItem.transform.rotation = transform.rotation;
+        }
+
+        public void Attach(Item item)
+        {
+            if (!_available) return;
+
             item.transform.position = transform.position;
+            item.transform.rotation = transform.rotation;
+            
+            _connectedItem = item;
+            _available = false;
+        }
+
+        public void Detach()
+        {
+            _available = true;
+            _connectedItem = null;
+        } 
+
+        public bool IsAttached(Item item)
+        {
+            if (_available) return false;
+            if (item == _connectedItem) return true;
+
+            return false;
         }
 
         public void MakeVisible(MeshFilter _itemMeshFilter)
         {
+            if (!_available) return;
+
             _renderer.enabled = true;
             
             if (!TryGetComponent<MeshCollider>(out MeshCollider _meshCollider)) return;
