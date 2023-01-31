@@ -4,7 +4,7 @@ namespace InkeepersKeep.Core
 {
     public class Input : MonoBehaviour
     {
-        private Controls _controls;
+        [SerializeField] private Controls _controls;
         public Controls Controls => _controls;
 
         public void Initialize() => _controls = new Controls();
