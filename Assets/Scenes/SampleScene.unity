@@ -580,7 +580,7 @@ MonoBehaviour:
   SyncScaleY: 0
   SyncScaleZ: 0
   PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
+  RotAngleThreshold: 0.001
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
@@ -863,7 +863,7 @@ MonoBehaviour:
   SyncScaleY: 0
   SyncScaleZ: 0
   PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
+  RotAngleThreshold: 0.001
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   SyncScaleY: 0
   SyncScaleZ: 0
   PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
+  RotAngleThreshold: 0.001
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1

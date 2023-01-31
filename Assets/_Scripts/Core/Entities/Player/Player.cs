@@ -10,7 +10,7 @@ namespace InkeepersKeep.Core.Entities.Player
     {
         [SerializeField] private Input _input;
         [SerializeField] private GroundCheck _groundCheck;
-        [SerializeField] private Jumping _jumping;
+        private Jumping _jumping;
 
         [SerializeField] private GameObject _headCamera;
         private CameraRotation _camRotation;
@@ -23,6 +23,7 @@ namespace InkeepersKeep.Core.Entities.Player
         { 
             _movable = GetComponent<IMovable>();
             _camRotation = GetComponentInChildren<CameraRotation>();
+            _jumping = GetComponent<Jumping>();
         }
 
         public override void OnNetworkSpawn()
@@ -55,12 +56,11 @@ namespace InkeepersKeep.Core.Entities.Player
                 return;
 
             _deltaMouse = _input.GetDeltaMouse();
-            _camRotation.Rotate(_deltaMouse);
 
             if (_deltaMouse != Vector2.zero)
             {
-                //_camRotation.Rotate(_deltaMouse);
                 PlayerRotateCameraServerRpc(_deltaMouse);
+                _camRotation.Rotate(_deltaMouse);
             }
         }
 
@@ -69,15 +69,12 @@ namespace InkeepersKeep.Core.Entities.Player
             if (!IsOwner)
                 return;
 
-            if (_movable == null)
-                return;
-
             _movementDirection = _input.GetMovementDirection();
 
             if (_movementDirection != Vector2.zero)
             {
-                PlayerMoveServerRpc(_input.GetMovementDirection());
-                _movable.Move(_input.GetMovementDirection());
+                _movable.Move(_movementDirection);
+                PlayerMoveServerRpc(_movementDirection);
             }
         }
 
@@ -110,6 +107,22 @@ namespace InkeepersKeep.Core.Entities.Player
         private void Jump(InputAction.CallbackContext ctx)
         {
             if (_groundCheck.Check())
+            {
+                PlayerJumpServerRpc();
+                _jumping.Jump();
+            }
+        }
+
+        [ServerRpc]
+        private void PlayerJumpServerRpc()
+        {
+            PlayerJumpClientRpc();
+        }
+
+        [ClientRpc]
+        private void PlayerJumpClientRpc()
+        {
+            if (!IsOwner)
                 _jumping.Jump();
         }
     }
