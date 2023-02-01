@@ -216,11 +216,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bcdba5bdfdef9c4a9cc1b58542f84da, type: 3}
---- !u!23 &106876788 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 6bcdba5bdfdef9c4a9cc1b58542f84da, type: 3}
-  m_PrefabInstance: {fileID: 106876787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &106876789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6bcdba5bdfdef9c4a9cc1b58542f84da, type: 3}
@@ -403,10 +398,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 585121058}
+  - component: {fileID: 585121060}
   - component: {fileID: 585121057}
   - component: {fileID: 585121056}
   - component: {fileID: 585121059}
-  - component: {fileID: 585121060}
+  - component: {fileID: 585121061}
+  - component: {fileID: 585121062}
   m_Layer: 6
   m_Name: BeerMugItem
   m_TagString: Untagged
@@ -472,20 +469,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 85050637}
-  _itemActiveShader: {fileID: 4800000, guid: 74b0bd6765ca39248b47ee1e0737558c, type: 3}
-  _itemDefaultShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  _itemTintStrength: 0.1
-  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
-  _itemHoveringUI: {fileID: 847562629}
-  _itemInfoUITransitionSpeed: 0.06
+  _ui: {fileID: 585121061}
+  _tint: {fileID: 585121062}
   _rigidbody: {fileID: 585121056}
   _dropForce: 5
   _dropMinDistance: 0.25
   _interpolationSpeed: 10
-  _itemName: Beer Mug
-  _itemType: 2
-  _itemDescription: Yummy !
+  _data:
+    _name: Mug
+    _description: Prikol
+    _type: 2
   _isConnectedToConnector: 0
   _isCollidingWithItemConnector: 0
   _itemConnector: {fileID: 0}
@@ -497,6 +490,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585121055}
   m_Mesh: {fileID: -2432090755550338912, guid: ff077767eec9a7f4dbfa8a40bc71250f, type: 3}
+--- !u!114 &585121061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585121055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63c1f864b044dc4aa8ce7953ab8e3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHoveringUI: {fileID: 847562629}
+  _itemInfoUITransitionSpeed: 0.05
+--- !u!114 &585121062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585121055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f0973012737f40b1110a704995998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 85050637}
+  _itemActiveShader: {fileID: 4800000, guid: 74b0bd6765ca39248b47ee1e0737558c, type: 3}
+  _itemDefaultShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  _itemTintStrength: 0.1
+  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &621747931
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,11 +802,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!23 &779833895 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: 24e0f97191f5324459802588f390c597, type: 3}
-  m_PrefabInstance: {fileID: 1780421643}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &847562627
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,13 +980,15 @@ GameObject:
   - component: {fileID: 975410593}
   - component: {fileID: 975410592}
   - component: {fileID: 975410591}
+  - component: {fileID: 975410596}
+  - component: {fileID: 975410597}
   m_Layer: 6
   m_Name: SmallPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &975410591
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -988,20 +1009,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 106876788}
-  _itemActiveShader: {fileID: 4800000, guid: 74b0bd6765ca39248b47ee1e0737558c, type: 3}
-  _itemDefaultShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  _itemTintStrength: 0.1
-  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
-  _itemHoveringUI: {fileID: 847562629}
-  _itemInfoUITransitionSpeed: 0.06
+  _ui: {fileID: 0}
+  _tint: {fileID: 0}
   _rigidbody: {fileID: 975410593}
   _dropForce: 5
   _dropMinDistance: 0.25
   _interpolationSpeed: 10
-  _itemName: Small Plate
-  _itemType: 2
-  _itemDescription: small plate
+  _data:
+    _name: 
+    _description: 
+    _type: 0
   _isConnectedToConnector: 0
   _isCollidingWithItemConnector: 0
   _itemConnector: {fileID: 0}
@@ -1052,6 +1069,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &975410596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975410590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63c1f864b044dc4aa8ce7953ab8e3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHoveringUI: {fileID: 0}
+  _itemInfoUITransitionSpeed: 0.05
+--- !u!114 &975410597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975410590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f0973012737f40b1110a704995998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _itemActiveShader: {fileID: 0}
+  _itemDefaultShader: {fileID: 0}
+  _itemTintStrength: 0.1
+  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &984021629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,13 +1144,15 @@ GameObject:
   - component: {fileID: 1033344799}
   - component: {fileID: 1033344802}
   - component: {fileID: 1033344803}
+  - component: {fileID: 1033344804}
+  - component: {fileID: 1033344805}
   m_Layer: 6
   m_Name: SalmonItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1033344799
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1161,20 +1211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 1509881922}
-  _itemActiveShader: {fileID: 4800000, guid: 74b0bd6765ca39248b47ee1e0737558c, type: 3}
-  _itemDefaultShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  _itemTintStrength: 0.1
-  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
-  _itemHoveringUI: {fileID: 847562629}
-  _itemInfoUITransitionSpeed: 0.06
+  _ui: {fileID: 0}
+  _tint: {fileID: 0}
   _rigidbody: {fileID: 1033344799}
   _dropForce: 5
   _dropMinDistance: 0.25
   _interpolationSpeed: 10
-  _itemName: Salmon
-  _itemType: 1
-  _itemDescription: yea this is just a salmon
+  _data:
+    _name: 
+    _description: 
+    _type: 0
   _isConnectedToConnector: 0
   _isCollidingWithItemConnector: 0
   _itemConnector: {fileID: 0}
@@ -1186,6 +1232,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033344798}
   m_Mesh: {fileID: -2432090755550338912, guid: fd7b7ab9f7c1cf64386c497647266c42, type: 3}
+--- !u!114 &1033344804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033344798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63c1f864b044dc4aa8ce7953ab8e3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHoveringUI: {fileID: 0}
+  _itemInfoUITransitionSpeed: 0.05
+--- !u!114 &1033344805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033344798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f0973012737f40b1110a704995998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _itemActiveShader: {fileID: 0}
+  _itemDefaultShader: {fileID: 0}
+  _itemTintStrength: 0.1
+  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1078551169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1321,13 +1398,15 @@ GameObject:
   - component: {fileID: 1155348189}
   - component: {fileID: 1155348192}
   - component: {fileID: 1155348193}
+  - component: {fileID: 1155348194}
+  - component: {fileID: 1155348195}
   m_Layer: 6
   m_Name: PorkLegItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1155348189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1386,27 +1465,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfb6bc219e322947ada23b34645019b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 779833895}
-  _itemActiveShader: {fileID: 4800000, guid: 74b0bd6765ca39248b47ee1e0737558c, type: 3}
-  _itemDefaultShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  _itemTintStrength: 0.1
-  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
-  _itemHoveringUI: {fileID: 847562629}
-  _itemInfoUITransitionSpeed: 0.06
+  _ui: {fileID: 0}
+  _tint: {fileID: 0}
   _rigidbody: {fileID: 1155348189}
   _dropForce: 5
   _dropMinDistance: 0.25
   _interpolationSpeed: 10
-  _itemName: Pork Leg
-  _itemType: 0
-  _itemDescription: 'just a leg, just a leg, just a leg, just a leg, just a leg,
-    just a leg, just a leg, just a leg, just a leg, just a leg, just a leg, just
-    a leg, just a leg, just a leg, just a leg, just a leg, just a leg, just a leg,
-    just a leg, just a leg, just a leg, just a leg, just a leg, just a leg, just
-    a leg, just a leg, just a leg, just a leg, just a leg, just a leg, just a leg,
-    just a leg, just a leg, just a leg, just a leg, just a leg, just a leg, just
-    a leg, just a leg, just a leg, just a leg, just a leg, just a leg, just a leg,
-    just a leg, just a leg, just a leg, just a leg, '
+  _data:
+    _name: 
+    _description: 
+    _type: 0
   _isConnectedToConnector: 0
   _isCollidingWithItemConnector: 0
   _itemConnector: {fileID: 0}
@@ -1418,6 +1486,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155348188}
   m_Mesh: {fileID: -2432090755550338912, guid: 24e0f97191f5324459802588f390c597, type: 3}
+--- !u!114 &1155348194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155348188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63c1f864b044dc4aa8ce7953ab8e3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHoveringUI: {fileID: 0}
+  _itemInfoUITransitionSpeed: 0.05
+--- !u!114 &1155348195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155348188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f0973012737f40b1110a704995998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _itemActiveShader: {fileID: 0}
+  _itemDefaultShader: {fileID: 0}
+  _itemTintStrength: 0.1
+  _itemTintColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1501430123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,11 +1633,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501430123}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1509881922 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: fd7b7ab9f7c1cf64386c497647266c42, type: 3}
-  m_PrefabInstance: {fileID: 1614971616}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1541818382
 GameObject:
   m_ObjectHideFlags: 0

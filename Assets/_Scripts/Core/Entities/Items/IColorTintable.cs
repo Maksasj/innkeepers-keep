@@ -1,10 +1,8 @@
-using UnityEngine;
-
 namespace InkeepersKeep.Core.Entities.Items
 {
-    public interface IColorTintable
+    public interface ITintable
     {
-        void ChangeTint();
-        void ReturnDefaultTint();
+        void EnableTint();
+        void DisableTint();
     }
 }
