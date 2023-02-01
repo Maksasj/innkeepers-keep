@@ -9,23 +9,20 @@ namespace InkeepersKeep.Core.Entities.Items
         [SerializeField] private ItemUI _ui;
         [SerializeField] private Tint _tint;
 
-        /* Physics */
+        [Header("Physics")]
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _dropForce = 5f;
         [SerializeField] private float _dropMinDistance = 0.2f;
             
-        /* Item grabbing */
+        [Header("Grabbing")]
         [SerializeField] private float _interpolationSpeed = 10f;
         private Transform _grabPoint;
         private bool _isDragging = false;
 
-        /* General Item information */
+        [Header("Data")]
         [SerializeField] private ItemData _data;
 
-        /* Item connector thing */
-        public bool _isConnectedToConnector;
-        public bool _isCollidingWithItemConnector;
-        public ItemConnector _itemConnector;
+        private ItemConnector _currentItemConnector;
 
         private void FixedUpdate()
         {
@@ -38,9 +35,10 @@ namespace InkeepersKeep.Core.Entities.Items
 
         public void Grab(Transform grabPoint)
         {
-            if(_isConnectedToConnector && _itemConnector != null)
+            if (_currentItemConnector != null)
             {
-                _itemConnector.Detach();
+                _currentItemConnector.Detach();
+                _currentItemConnector = null;
             }
 
             _grabPoint = grabPoint;
@@ -53,11 +51,11 @@ namespace InkeepersKeep.Core.Entities.Items
 
         public void Drop()
         {
-            if(_isCollidingWithItemConnector == true)
+            if (_currentItemConnector != null)
             {
-                _itemConnector.Attach(GetComponent<Item>());
-                _isConnectedToConnector = true;
-            } else
+                _currentItemConnector.Attach(this);
+            }
+            else
             {
                 _rigidbody.useGravity = true;
                 _rigidbody.constraints = RigidbodyConstraints.None;
@@ -93,14 +91,35 @@ namespace InkeepersKeep.Core.Entities.Items
         {
             _ui.HideItemInfoUI();
 
-            if (_isDragging) return;
+            if (_isDragging)
+                return;
 
-            /* Lets change item color tint*/
             DisableTint();
         }
 
         public void EnableTint() => _tint.Enable();
 
         public void DisableTint() => _tint.Disable();
+
+        private void OnTriggerEnter(Collider collision)
+        {
+            if (collision.TryGetComponent(out ItemConnector itemConnector))
+                _currentItemConnector = itemConnector;
+        }
+
+        private void OnTriggerStay(Collider collision)
+        {
+            if (_currentItemConnector != null)
+                return;
+
+            if (collision.TryGetComponent(out ItemConnector itemConnector))
+                _currentItemConnector = itemConnector;
+        }
+
+        private void OnTriggerExit(Collider collision)
+        {
+            if (collision.TryGetComponent(out ItemConnector itemConnector))
+                _currentItemConnector = null;
+        }
     }
 }

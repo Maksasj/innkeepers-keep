@@ -479,9 +479,6 @@ MonoBehaviour:
     _name: Mug
     _description: Prikol
     _type: 2
-  _isConnectedToConnector: 0
-  _isCollidingWithItemConnector: 0
-  _itemConnector: {fileID: 0}
 --- !u!33 &585121060
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1019,9 +1016,6 @@ MonoBehaviour:
     _name: 
     _description: 
     _type: 0
-  _isConnectedToConnector: 0
-  _isCollidingWithItemConnector: 0
-  _itemConnector: {fileID: 0}
 --- !u!54 &975410593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1221,9 +1215,6 @@ MonoBehaviour:
     _name: 
     _description: 
     _type: 0
-  _isConnectedToConnector: 0
-  _isCollidingWithItemConnector: 0
-  _itemConnector: {fileID: 0}
 --- !u!33 &1033344803
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1475,9 +1466,6 @@ MonoBehaviour:
     _name: 
     _description: 
     _type: 0
-  _isConnectedToConnector: 0
-  _isCollidingWithItemConnector: 0
-  _itemConnector: {fileID: 0}
 --- !u!33 &1155348193
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1568,7 +1556,6 @@ MonoBehaviour:
   _meshFilter: {fileID: 1501430128}
   _defaultMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   _meshCollider: {fileID: 0}
-  _colliding: 0
 --- !u!64 &1501430126
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1683,8 +1670,7 @@ MonoBehaviour:
   _renderer: {fileID: 1541818388}
   _meshFilter: {fileID: 1541818389}
   _defaultMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  _meshCollider: {fileID: 0}
-  _colliding: 0
+  _meshCollider: {fileID: 1541818387}
 --- !u!64 &1541818387
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2248,8 +2234,7 @@ MonoBehaviour:
   _renderer: {fileID: 2070411160}
   _meshFilter: {fileID: 2070411161}
   _defaultMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  _meshCollider: {fileID: 0}
-  _colliding: 0
+  _meshCollider: {fileID: 2070411159}
 --- !u!64 &2070411159
 MeshCollider:
   m_ObjectHideFlags: 0
