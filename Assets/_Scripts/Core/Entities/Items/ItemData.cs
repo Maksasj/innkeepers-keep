@@ -11,4 +11,5 @@ public class ItemData : ScriptableObject
     [Header("Rendering")]
     public Mesh mesh;
     public Material material;
+    public Vector3 scale;
 }

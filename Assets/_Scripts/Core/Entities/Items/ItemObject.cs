@@ -11,10 +11,16 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private MeshFilter _meshFilter;
     [SerializeField] private Renderer _renderer;
 
+    [SerializeField] private MeshCollider _meshCollider;
+
     private void Awake()
     {
         _meshFilter.mesh = _itemData.mesh;
         _renderer.material = _itemData.material;
+
+        transform.localScale = _itemData.scale;
+
+        //_meshCollider.sharedMesh = _itemData.mesh;
     }
 
     void Start()

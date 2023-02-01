@@ -16,3 +16,4 @@ MonoBehaviour:
   description: just a simple pork leg
   mesh: {fileID: -2432090755550338912, guid: 24e0f97191f5324459802588f390c597, type: 3}
   material: {fileID: 2100000, guid: 5a36cf2e306191344b966b6048e95e19, type: 2}
+  scale: {x: 0.5, y: 0.5, z: 0.5}
