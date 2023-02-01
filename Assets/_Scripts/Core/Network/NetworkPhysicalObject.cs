@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 
-namespace InkeepersKeep.Core.Utils
+namespace InkeepersKeep.Core.Network
 {
     public class NetworkPhysicalObject : NetworkBehaviour
     {

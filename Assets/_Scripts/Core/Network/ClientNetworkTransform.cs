@@ -1,7 +1,6 @@
 using Unity.Netcode.Components;
-using UnityEngine;
 
-namespace InkeepersKeep.Core.Utils
+namespace InkeepersKeep.Core.Network
 {
     public class ClientNetworkTransform : NetworkTransform
     {
