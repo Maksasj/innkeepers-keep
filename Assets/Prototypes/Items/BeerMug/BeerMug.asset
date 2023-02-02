@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Beer Mug
   description: yummy !
+  type: 1
+  subType: 6
