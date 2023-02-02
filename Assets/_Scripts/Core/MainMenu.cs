@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using TMPro;
-using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
-namespace InkeepersKeep.Core.UI
+namespace InkeepersKeep.Core
 {
-    public class ConnectionUI : MonoBehaviour
+    public class MainMenu : MonoBehaviour
     {
         [SerializeField] private TMP_InputField _ipInputField;
         [SerializeField] private TMP_InputField _portInputField;
@@ -21,17 +20,25 @@ namespace InkeepersKeep.Core.UI
 
         public void Connect()
         {
-            _unityTransport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+            _unityTransport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
 
             _unityTransport.ConnectionData.Address = _ipInputField.text;
             _unityTransport.ConnectionData.Port = ushort.Parse(_portInputField.text);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
             if (_isHost)
-                NetworkManager.Singleton.StartHost();
+            {
+                if (NetworkManager.Singleton.StartHost())
+                {
+                    SceneTransition.Singleton.RegisterCallbacks();
+
+                    string nextScenePath = SceneUtility.GetScenePathByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1);
+                    SceneTransition.Singleton.SwitchScene(nextScenePath);
+                }
+            }
             else
+            {
                 NetworkManager.Singleton.StartClient();
+            }
         }
     }
 }
