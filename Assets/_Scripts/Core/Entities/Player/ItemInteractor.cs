@@ -5,28 +5,32 @@ namespace InkeepersKeep.Core.Entities.Player
 {
     public class ItemInteractor : MonoBehaviour
     {
-        [SerializeField] private float _maxItemInteractionDistance;
-        [SerializeField] private Transform _playerCursor;
+        [Header("Interaction")]
+        [SerializeField] private float      _maxItemInteractionDistance;
+        [SerializeField] private Transform  _playerCursor;
 
-        [Header("Grabbing")]
-        [SerializeField] private float _interpolationSpeed = 10f;
+        [Header("Item moving")]
+        [SerializeField] private float      _interpolationSpeed = 5f;
 
-        private bool _isGrabbingItem;
-        
-        private Transform _hoveringItem;
-        private Rigidbody _hoveringItemRigidBody;
+        [Header("Item Drop")]
+        [SerializeField] private float      _dropForce = 5f;
+        [SerializeField] private float      _dropMinDistance = 0.2f;
+
+        /* Some variables used for moving item */
+        private bool                        _isHoldingItem;
+        private Transform                   _hoveringItem;
+        private Rigidbody                   _hoveringItemRigidBody;
 
         private void FixedUpdate()
         {
-            if(!_isGrabbingItem)
+            if(!_isHoldingItem)
             {
                 bool res = RaycastFacingItemObject();
+               
+                /* In the future we will do there some logic to show player item data */
             } else
             {
-                Debug.Log("Grabbing item object !");
-
-                Vector3 newPosition = Vector3.Lerp(_hoveringItem.position, _playerCursor.position, Time.deltaTime * _interpolationSpeed);
-                _hoveringItemRigidBody.MovePosition(newPosition);
+                MoveHoldItem();
             }
         }
 
@@ -51,17 +55,22 @@ namespace InkeepersKeep.Core.Entities.Player
                 return false;
             }
 
-            _playerCursor.transform.position = hit.transform.position;
+            _playerCursor.transform.position = hit.point;
             _hoveringItem = item.transform;
-            Debug.Log("Facing item object !");
             return true;
+        }
+
+        public void MoveHoldItem()
+        {
+            Vector3 newPosition = Vector3.Lerp(_hoveringItemRigidBody.transform.position, _playerCursor.position, Time.deltaTime * _interpolationSpeed);
+            _hoveringItemRigidBody.MovePosition(newPosition);
         }
 
         public void GrabItem()
         {
             if (_hoveringItem == null) return;
             
-            _isGrabbingItem = true;
+            _isHoldingItem = true;
 
             if (!_hoveringItem.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) return;
 
@@ -72,10 +81,22 @@ namespace InkeepersKeep.Core.Entities.Player
 
         public void DropItem()
         {
+            if (_hoveringItem == null) return;
+
             _hoveringItemRigidBody.useGravity = true;
             _hoveringItemRigidBody.constraints = RigidbodyConstraints.None;
 
-            _isGrabbingItem = false;
+            if (Vector3.Distance(_hoveringItemRigidBody.position, _playerCursor.position) > _dropMinDistance)
+            {
+                Vector3 moveDirection = (_playerCursor.position - _hoveringItemRigidBody.position);
+                _hoveringItemRigidBody.velocity = moveDirection * _dropForce;
+            }
+            else
+            {
+                _hoveringItemRigidBody.velocity = Vector3.zero;
+            }
+
+            _isHoldingItem = false;
             _hoveringItem = null;
         }
     }
