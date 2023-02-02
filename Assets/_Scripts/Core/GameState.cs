@@ -13,6 +13,7 @@ namespace InkeepersKeep.Core
                 Destroy(_camera.gameObject);
 
             SceneTransition.Singleton.SetSceneState(SceneTransition.SceneStates.Game);
+            DynamicGI.UpdateEnvironment();
 
             base.OnNetworkSpawn();
         }

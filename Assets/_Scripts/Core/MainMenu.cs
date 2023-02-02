@@ -37,7 +37,11 @@ namespace InkeepersKeep.Core
             }
             else
             {
-                NetworkManager.Singleton.StartClient();
+                if (!NetworkManager.Singleton.StartClient())
+                {
+                    Debug.LogError("Failed to start client.");
+                    NetworkManager.Singleton.Shutdown();
+                }
             }
         }
     }
