@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Salmon
   description: eeee, this is a fish...
+  type: 0
+  subType: 1
