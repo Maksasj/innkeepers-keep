@@ -1,14 +1,17 @@
-public enum ItemSubType
+namespace InkeepersKeep.Core.Entities.Items
 {
-    /* Food sub types */
-    Meat,
-    Fish,
-    Vegetable,
-    Fruit,
-    Berry,
-    Mushroom,
+    public enum ItemSubType
+    {
+        /* Food sub types */
+        Meat,
+        Fish,
+        Vegetable,
+        Fruit,
+        Berry,
+        Mushroom,
 
-    /* Dish sub types */
-    Pot,
-    Dish
+        /* Dish sub types */
+        Pot,
+        Dish
+    }
 }

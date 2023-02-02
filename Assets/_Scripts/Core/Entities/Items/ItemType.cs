@@ -1,7 +1,10 @@
-public enum ItemType
+namespace InkeepersKeep.Core.Entities.Items
 {
-    Food,
-    Dish,
-    Resource,
-    Furniture,
+    public enum ItemType
+    {
+        Food,
+        Dish,
+        Resource,
+        Furniture,
+    }
 }
