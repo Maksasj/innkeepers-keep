@@ -9,5 +9,8 @@ namespace InkeepersKeep.Core.Entities.Items
         [Header("General")]
         public string name;
         public string description;
+
+        public ItemType type;
+        public ItemSubType subType;
     }
 }
