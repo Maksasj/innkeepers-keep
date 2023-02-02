@@ -143,8 +143,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f648c673670a436489390988a6724d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grabbableItemLayer:
+    serializedVersion: 2
+    m_Bits: 64
   _maxItemInteractionDistance: 5
   _playerCursor: {fileID: 3147886391439220105}
+  _interpolationSpeed: 5
+  _dropForce: 5
+  _dropMinDistance: 0.2
 --- !u!114 &6522598155377039605
 MonoBehaviour:
   m_ObjectHideFlags: 0
