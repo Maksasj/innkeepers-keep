@@ -6,6 +6,7 @@ namespace InkeepersKeep.Core.Entities.Player
     {
         private Camera _activeCamera;
 
+        [SerializeField] Transform _bodyTransform;
         [SerializeField][Range(0.1f, 20)] private float _sensitivity;
 
         private const float MAX_VIEW_ANGLE = 90f;
@@ -31,8 +32,8 @@ namespace InkeepersKeep.Core.Entities.Player
             _xRotation -= mouseY;
             _xRotation = Mathf.Clamp(_xRotation, -_minViewAngle, MAX_VIEW_ANGLE);
 
-            transform.Rotate(Vector3.up * mouseX);
-            _activeCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+            _bodyTransform.transform.Rotate(Vector3.up * mouseX);
+            transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         }
     }
 }
