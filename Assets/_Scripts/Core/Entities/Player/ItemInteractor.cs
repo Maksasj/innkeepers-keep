@@ -75,12 +75,12 @@ namespace InkeepersKeep.Core.Entities.Player
             
             _isHoldingItem = true;
 
-            if (_hoveringItem.TryGetComponent(out Rigidbody rigidbody))
-            {
-                _hoveringItemRigidbody = rigidbody;
-                _hoveringItemRigidbody.useGravity = false;
-                _hoveringItemRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            }
+            if (!_hoveringItem.TryGetComponent(out Rigidbody rigidbody))
+                return;
+
+            _hoveringItemRigidbody = rigidbody;
+            _hoveringItemRigidbody.useGravity = false;
+            _hoveringItemRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
         public void DropItem()
