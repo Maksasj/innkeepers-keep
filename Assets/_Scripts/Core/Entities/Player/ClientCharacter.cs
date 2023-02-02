@@ -5,16 +5,10 @@ namespace InkeepersKeep.Core.Entities.Player
 {
     public class ClientCharacter : NetworkBehaviour
     {
-        private CameraHandler _cameraHandler;
-        private Input _input;
+        [SerializeField] private CameraHandler _cameraHandler;
+        [SerializeField] private Input _input;
 
         private IMovable _movable;
-
-        private void Awake()
-        {
-            _input = GetComponent<Input>();
-            _cameraHandler = GetComponent<CameraHandler>();
-        }
 
         public override void OnNetworkSpawn()
         {
