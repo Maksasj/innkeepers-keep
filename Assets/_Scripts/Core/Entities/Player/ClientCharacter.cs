@@ -22,7 +22,7 @@ namespace InkeepersKeep.Core.Entities.Player
 
             _movable = GetComponent<IMovable>();
 
-            _cameraHandler.Initialize(Camera.main);
+            _cameraHandler.Initialize();
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
