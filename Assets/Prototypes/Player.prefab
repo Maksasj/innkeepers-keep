@@ -503,9 +503,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 8981482164504941944}
-  _speed: 50
-  _acceleration: 10
-  _decceleration: 5
+  _speed: 10
+  _acceleration: 15
+  _decceleration: 15
   _velocityPower: 0.5
 --- !u!114 &6949874951147151644
 MonoBehaviour:
