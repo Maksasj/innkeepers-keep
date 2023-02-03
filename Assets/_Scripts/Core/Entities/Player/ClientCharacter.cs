@@ -54,7 +54,6 @@ namespace InkeepersKeep.Core.Entities.Player
 
         private void TryJump(InputAction.CallbackContext ctx)
         {
-            Debug.Log("Jumping");
             _jumping.Jump();
         }
 
