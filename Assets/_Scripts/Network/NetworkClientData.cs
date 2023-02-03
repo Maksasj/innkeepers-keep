@@ -19,5 +19,7 @@ namespace InkeepersKeep.Core.Network
         }
 
         public static bool IsPlayerDataExists(ulong clientId) => _clientData.ContainsKey(clientId);
+
+        public static void ClearClientData() => _clientData.Clear();
     }
 }

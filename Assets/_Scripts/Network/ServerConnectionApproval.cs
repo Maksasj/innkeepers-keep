@@ -13,15 +13,10 @@ namespace InkeepersKeep.Core.Network
 
         public void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
         {
-            Debug.Log("Approval Check");
-
             string payload = Encoding.ASCII.GetString(request.Payload);
             var connectionPayload = JsonUtility.FromJson<ConnectionPayload>(payload);
 
             response.Approved = connectionPayload.playerName.Length > 0;
-
-            Debug.Log("Player nickname: " + connectionPayload.playerName);
-            Debug.Log("Connection allowed: " + response.Approved);
 
             if (response.Approved)
             {
@@ -29,8 +24,6 @@ namespace InkeepersKeep.Core.Network
 
                 if (!NetworkClientData.IsPlayerDataExists(request.ClientNetworkId))
                 {
-                    Debug.Log("Adding player data");
-
                     PlayerData playerData = new PlayerData(connectionPayload.playerName);
                     NetworkClientData.AddClient(request.ClientNetworkId, playerData);
                 }
