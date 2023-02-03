@@ -913,7 +913,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 2
+  near clip plane: 0.5
   far clip plane: 1000
   field of view: 90
   orthographic: 0
