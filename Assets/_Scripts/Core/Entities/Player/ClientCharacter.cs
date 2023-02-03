@@ -1,6 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using InkeepersKeep.Core.Entities;
 
 namespace InkeepersKeep.Core.Entities.Player 
 {
@@ -14,13 +14,12 @@ namespace InkeepersKeep.Core.Entities.Player
 
         public override void OnNetworkSpawn()
         {
-            if (!IsOwner)
-                return;
+            if (!IsOwner) return;
 
             _input.Initialize();
             _input.Enable();
 
-            _movable = GetComponent<IMovable>(); 
+            _movable = GetComponent<IMovable>();
 
             _cameraHandler.Initialize(Camera.main);
 
@@ -29,12 +28,6 @@ namespace InkeepersKeep.Core.Entities.Player
 
             _input.Controls.Player.Interaction.performed += TryInteract;
             _input.Controls.Player.Interaction.canceled += TryInteract;
-        }
-
-        public override void OnNetworkDespawn()
-        {
-            base.OnNetworkDespawn();
-            _input.Disable();
         }
 
         public void FixedUpdate()
