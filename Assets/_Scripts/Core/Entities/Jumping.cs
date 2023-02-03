@@ -14,7 +14,6 @@ namespace InkeepersKeep.Core.Entities
 
         public void Jump()
         {
-
             if (!_onGround) return;
 
             _rigidbody.AddForce(Vector2.up * _force, ForceMode.Impulse);
