@@ -22,6 +22,7 @@ namespace InkeepersKeep.Core.Entities.Player
             /* Lets set this game object as parent for camera */
             camera.transform.SetParent(transform);
             camera.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            camera.nearClipPlane = 0.5f;
         }
 
         public virtual void Rotate(Vector2 cursorDelta)

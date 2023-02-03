@@ -1,6 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
-using InkeepersKeep.Core.Entities;
+using UnityEngine.InputSystem;
 
 namespace InkeepersKeep.Core.Entities.Player 
 {
