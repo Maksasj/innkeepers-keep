@@ -9,6 +9,7 @@ namespace InkeepersKeep.Core.Entities.Player
         [SerializeField] private CameraHandler _cameraHandler;
         [SerializeField] private ItemInteractor _itemInteractor;
         [SerializeField] private Input _input;
+        [SerializeField] private Jumping _jumping;
 
         private IMovable _movable;
 
@@ -29,6 +30,16 @@ namespace InkeepersKeep.Core.Entities.Player
 
             _input.Controls.Player.Interaction.performed += TryInteract;
             _input.Controls.Player.Interaction.canceled += TryInteract;
+
+            _input.Controls.Player.Jump.performed += TryJump;
+        }
+
+        public override void OnNetworkDespawn()
+        {
+            _input.Controls.Player.Interaction.performed -= TryInteract;
+            _input.Controls.Player.Interaction.canceled -= TryInteract;
+
+            _input.Controls.Player.Jump.performed -= TryJump;
         }
 
         public void FixedUpdate()
@@ -39,6 +50,12 @@ namespace InkeepersKeep.Core.Entities.Player
             _cameraHandler.Rotate(_input.GetLookDirection());
 
             _movable.Move(_input.GetMovementDirection());
+        }
+
+        private void TryJump(InputAction.CallbackContext ctx)
+        {
+            Debug.Log("Jumping");
+            _jumping.Jump();
         }
 
         private void TryInteract(InputAction.CallbackContext ctx)
