@@ -14,7 +14,8 @@ namespace InkeepersKeep.Core.Entities.Player
 
         public override void OnNetworkSpawn()
         {
-            if (!IsOwner) return;
+            if (!IsOwner) 
+                return;
 
             _input.Initialize();
             _input.Enable();
