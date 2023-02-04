@@ -7,18 +7,19 @@ namespace InkeepersKeep.Core.Network
     {
         void OnCollisionEnter(Collision collision)
         {
-            /* Since only host have rights to modify ownership,
-             * we should firstly check if it is Host.
-             * 
-             * In the future we will need implement 
-             * a way to allow transfering ownershipt 
-             * from client to another client or host 
-            */
+            if (!collision.gameObject.TryGetComponent(out NetworkObject _object)) return;
 
-            if (!IsHost) return;
-            if (!collision.gameObject.TryGetComponent<NetworkObject>(out NetworkObject _object)) return;
+            if(OwnerClientId != _object.OwnerClientId)
+                GiveOwnershipServerRpc(_object.OwnerClientId);
+        }
 
-            GetComponent<NetworkObject>().ChangeOwnership(_object.OwnerClientId);
+        public void TakeOwnership(ulong clientId) => GiveOwnershipServerRpc(clientId);
+
+        [ServerRpc(RequireOwnership = false)]
+        private void GiveOwnershipServerRpc(ulong clientId)
+        {
+            Debug.Log("Server gets message about changing ownership, executed by: " + OwnerClientId);
+            GetComponent<NetworkObject>().ChangeOwnership(clientId);
         }
     }
 }
