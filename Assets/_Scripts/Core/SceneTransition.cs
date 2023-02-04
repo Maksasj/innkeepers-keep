@@ -16,6 +16,7 @@ namespace InkeepersKeep.Core
         public SceneStates SceneState => _sceneState;
 
         private const int MAIN_MENU_SCENE_BUILD_INDEX = 1;
+        public void RegisterCallbacks() => NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLoadComplete;
 
         public enum SceneStates
         {
@@ -54,7 +55,6 @@ namespace InkeepersKeep.Core
                 SceneManager.LoadSceneAsync(sceneName);
         }
 
-        public void RegisterCallbacks() => NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLoadComplete;
 
         private void OnLoadComplete(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
         {
