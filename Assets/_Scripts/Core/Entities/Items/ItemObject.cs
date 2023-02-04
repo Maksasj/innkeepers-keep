@@ -6,20 +6,5 @@ namespace InkeepersKeep.Core.Entities.Items
     {
         [Header("General")]
         [SerializeField] private ItemData _itemData;
-
-        private void Awake()
-        {
-
-        }
-
-        void Start()
-        {
-
-        }
-
-        void Update()
-        {
-
-        }
     }
 }

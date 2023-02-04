@@ -87,5 +87,9 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 951099334
       objectReference: {fileID: 0}
+    - target: {fileID: 6653809700906880905, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}
+      propertyPath: AutoObjectParentSync
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}

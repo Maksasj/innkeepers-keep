@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using Unity.Netcode;
 
-namespace InkeepersKeep.Core.Network
+namespace InkeepersKeep.Network
 {
     public class NetworkPhysicalObject : NetworkBehaviour
     {
@@ -9,16 +10,21 @@ namespace InkeepersKeep.Core.Network
         {
             if (!collision.gameObject.TryGetComponent(out NetworkObject _object)) return;
 
-            if(OwnerClientId != _object.OwnerClientId)
-                GiveOwnershipServerRpc(_object.OwnerClientId);
+            if (OwnerClientId == _object.OwnerClientId) return;
+
+            GiveOwnershipServerRpc(_object.OwnerClientId);
         }
 
-        public void TakeOwnership(ulong clientId) => GiveOwnershipServerRpc(clientId);
+        public void TakeOwnership(ulong clientId)
+        {
+            if (clientId == OwnerClientId) return;
+
+            GiveOwnershipServerRpc(clientId);
+        }
 
         [ServerRpc(RequireOwnership = false)]
         private void GiveOwnershipServerRpc(ulong clientId)
         {
-            Debug.Log("Server gets message about changing ownership, executed by: " + OwnerClientId);
             GetComponent<NetworkObject>().ChangeOwnership(clientId);
         }
     }

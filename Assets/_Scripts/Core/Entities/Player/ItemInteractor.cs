@@ -1,9 +1,11 @@
 using InkeepersKeep.Core.Entities.Items;
+using InkeepersKeep.Network;
 using UnityEngine;
+using Unity.Netcode;
 
 namespace InkeepersKeep.Core.Entities.Player
 {
-    public class ItemInteractor : MonoBehaviour
+    public class ItemInteractor : NetworkBehaviour
     {
         [Header("Interaction")]
         [SerializeField] private LayerMask _grabbableItemLayer;
@@ -71,12 +73,15 @@ namespace InkeepersKeep.Core.Entities.Player
         public void GrabItem()
         {
             if (_hoveringItem == null)
-                return;
-            
-            _isHoldingItem = true;
+                    return;
 
             if (!_hoveringItem.TryGetComponent(out Rigidbody rigidbody))
                 return;
+
+            if (_hoveringItem.TryGetComponent(out NetworkPhysicalObject networkPhysicalObject))
+                networkPhysicalObject.TakeOwnership(OwnerClientId);
+
+            _isHoldingItem = true;
 
             _hoveringItemRigidbody = rigidbody;
             _hoveringItemRigidbody.useGravity = false;
@@ -86,6 +91,9 @@ namespace InkeepersKeep.Core.Entities.Player
         public void DropItem()
         {
             if (_hoveringItem == null)
+                return;
+
+            if (_hoveringItemRigidbody == null)
                 return;
 
             _hoveringItemRigidbody.useGravity = true;
