@@ -8,16 +8,19 @@ namespace InkeepersKeep.Network
     {
         void OnCollisionEnter(Collision collision)
         {
-            if (!collision.gameObject.TryGetComponent(out NetworkObject _object)) return;
+            if (!collision.gameObject.TryGetComponent(out NetworkObject _object))
+                return;
 
-            if (OwnerClientId == _object.OwnerClientId) return;
+            if (OwnerClientId == _object.OwnerClientId)
+                return;
 
             GiveOwnershipServerRpc(_object.OwnerClientId);
         }
 
         public void TakeOwnership(ulong clientId)
         {
-            if (clientId == OwnerClientId) return;
+            if (clientId == OwnerClientId)
+                return;
 
             GiveOwnershipServerRpc(clientId);
         }

@@ -79,7 +79,8 @@ namespace InkeepersKeep.Core.Entities.Player
                 return;
 
             if (_hoveringItem.TryGetComponent(out NetworkPhysicalObject networkPhysicalObject))
-                networkPhysicalObject.TakeOwnership(OwnerClientId);
+                if (!networkPhysicalObject.IsOwner)
+                    networkPhysicalObject.TakeOwnership(OwnerClientId);
 
             _isHoldingItem = true;
 
