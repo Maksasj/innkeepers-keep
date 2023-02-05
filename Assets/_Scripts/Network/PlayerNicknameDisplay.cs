@@ -1,7 +1,6 @@
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
-using Unity.Collections;
 
 namespace InkeepersKeep.Core.Network
 {
@@ -9,22 +8,18 @@ namespace InkeepersKeep.Core.Network
     {
         [SerializeField] private TMP_Text _nicknameText;
 
-        private NetworkVariable<FixedString32Bytes> _nickname = new NetworkVariable<FixedString32Bytes>();
+        public override void OnNetworkSpawn() => NicknameRequestServerRpc(OwnerClientId);
 
-        public override void OnNetworkSpawn()
+        [ServerRpc(RequireOwnership = false)]
+        private void NicknameRequestServerRpc(ulong clientId)
         {
-            if (!IsServer)
-                return;
-
-            PlayerData? playerData = NetworkClientData.GetPlayerData(OwnerClientId);
+            PlayerData? playerData = NetworkClientData.GetPlayerData(clientId);
 
             if (playerData.HasValue)
-                _nickname.Value = playerData.Value.PlayerName;
+                SendNicknameClientRpc((PlayerData)playerData);
         }
 
-        private void OnEnable() => _nickname.OnValueChanged += DisplayNickname;
-        private void OnDisable() => _nickname.OnValueChanged -= DisplayNickname;
-
-        private void DisplayNickname(FixedString32Bytes oldDisplayName, FixedString32Bytes newDisplayName) => _nicknameText.text = newDisplayName.ConvertToString();
+        [ClientRpc]
+        private void SendNicknameClientRpc(PlayerData playerData) => _nicknameText.text = playerData.PlayerName;
     }
 }
