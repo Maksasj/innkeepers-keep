@@ -6,17 +6,14 @@ namespace InkeepersKeep.Core.Network
 {
     public class ServerConnectionApproval : MonoBehaviour
     {
-        public void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
+        public void Awake() => DontDestroyOnLoad(this);
 
         public void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
         {
             string payload = Encoding.ASCII.GetString(request.Payload);
             var connectionPayload = JsonUtility.FromJson<ConnectionPayload>(payload);
 
-            response.Approved = connectionPayload.playerName.Length > 0;
+            response.Approved = CompareNicknameWithClients(connectionPayload.playerName);
 
             if (response.Approved)
             {
@@ -30,6 +27,19 @@ namespace InkeepersKeep.Core.Network
             }
 
             response.Pending = false;
+        }
+
+        private bool CompareNicknameWithClients(string nickname)
+        {
+            foreach (var connectedClient in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                string connectedClientNickname = NetworkClientData.GetPlayerData(connectedClient).Value.PlayerName;
+
+                if (nickname == connectedClientNickname)
+                    return false;
+            }
+
+            return true;
         }
     }
 }
