@@ -171,7 +171,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2407811505682364040, guid: 003e0111da332514796eb400cbd4457a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2407811505682364040, guid: 003e0111da332514796eb400cbd4457a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1181,6 +1181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeerMugPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2318948794156886590, guid: 4ace5ae9f41a8db4492e1c56b393dd60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6940753089049290564, guid: 4ace5ae9f41a8db4492e1c56b393dd60, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2490705378
@@ -1339,6 +1343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PorkLegPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2228500776337346004, guid: c62f4c12a3c09fa48ada7c161af5385c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6814285071838986414, guid: c62f4c12a3c09fa48ada7c161af5385c, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3850830847
@@ -1399,6 +1407,10 @@ PrefabInstance:
     - target: {fileID: 2600476282738559284, guid: 2ac5efbcd1054ab46aa64851bd78a48b, type: 3}
       propertyPath: m_Name
       value: SalmonPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600476282738559284, guid: 2ac5efbcd1054ab46aa64851bd78a48b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7235792477016622158, guid: 2ac5efbcd1054ab46aa64851bd78a48b, type: 3}
       propertyPath: GlobalObjectIdHash
