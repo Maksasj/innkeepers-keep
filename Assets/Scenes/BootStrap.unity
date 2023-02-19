@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RunInBackground: 1
-  LogLevel: 0
+  LogLevel: 1
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 868749362}
@@ -208,7 +208,7 @@ MonoBehaviour:
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
     - Override: 0
-      Prefab: {fileID: 1375430603452707343, guid: a68b2acc97a601f42b42e2077a7b3aee, type: 3}
+      Prefab: {fileID: 2029743708528345843, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
