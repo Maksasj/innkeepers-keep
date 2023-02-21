@@ -1,12 +1,13 @@
 using InkeepersKeep.Core.Entities.Items;
 using UnityEngine;
+using Unity.Netcode;
 
 namespace InkeepersKeep.Core.Entities.Player
 {
-    public class ItemInteractor : MonoBehaviour
+    public class ItemInteractor : NetworkBehaviour
     {
         [Header("Interaction")]
-        [SerializeField] private LayerMask _grabbableItemLayer;
+        [SerializeField] private LayerMask _interactableItemLayer;
         [SerializeField] private float _maxItemInteractionDistance;
         [SerializeField] private Transform _playerCursor;
 
@@ -43,7 +44,7 @@ namespace InkeepersKeep.Core.Entities.Player
 
             Debug.DrawRay(transform.position, transform.forward);
 
-            if (!Physics.Raycast(ray, out hit, _maxItemInteractionDistance, _grabbableItemLayer))
+            if (!Physics.Raycast(ray, out hit, _maxItemInteractionDistance, _interactableItemLayer))
             {
                 _hoveringItem = null;
 
@@ -57,14 +58,14 @@ namespace InkeepersKeep.Core.Entities.Player
                 return false;
             }
 
-            _playerCursor.transform.position = hit.point;
+            _playerCursor.transform.position = hit.transform.position;
             _hoveringItem = item.transform;
             return true;
         }
 
         private void MoveHoldItem()
         {
-            Vector3 newPosition = Vector3.Lerp(_hoveringItemRigidbody.transform.position, _playerCursor.position, Time.deltaTime * _interpolationSpeed);
+            Vector3 newPosition = Vector3.Lerp(_hoveringItem.position, _playerCursor.position, Time.fixedDeltaTime * _interpolationSpeed);
             _hoveringItemRigidbody.MovePosition(newPosition);
         }
 
@@ -72,20 +73,29 @@ namespace InkeepersKeep.Core.Entities.Player
         {
             if (_hoveringItem == null)
                 return;
-            
-            _isHoldingItem = true;
 
             if (!_hoveringItem.TryGetComponent(out Rigidbody rigidbody))
                 return;
 
+            if (!_hoveringItem.TryGetComponent(out NetworkObject networkObject))
+                return;
+
+            _isHoldingItem = true;
+
             _hoveringItemRigidbody = rigidbody;
             _hoveringItemRigidbody.useGravity = false;
             _hoveringItemRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+            if (networkObject.OwnerClientId != OwnerClientId)
+                RequestOwnershipServerRpc(networkObject.NetworkObjectId);
         }
 
         public void DropItem()
         {
             if (_hoveringItem == null)
+                return;
+
+            if (_hoveringItemRigidbody == null)
                 return;
 
             _hoveringItemRigidbody.useGravity = true;
@@ -102,7 +112,16 @@ namespace InkeepersKeep.Core.Entities.Player
             }
 
             _isHoldingItem = false;
+
             _hoveringItem = null;
+            _hoveringItemRigidbody = null;
+        }
+
+        [ServerRpc]
+        public void RequestOwnershipServerRpc(ulong itemId, ServerRpcParams serverRpcParams = default)
+        {
+            var item = NetworkManager.SpawnManager.SpawnedObjects[itemId];
+            item.ChangeOwnership(serverRpcParams.Receive.SenderClientId);
         }
     }
 }

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2029743708528345843, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}
       propertyPath: m_Name
-      value: ItemObject Variant
+      value: PorkLegPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 2029743708528345844, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}
       propertyPath: m_Mesh
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6653809700906880905, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}
       propertyPath: AutoObjectParentSync
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6653809700906880905, guid: c1fd4a4bd7b13b64c8f5c197df17093a, type: 3}
       propertyPath: AlwaysReplicateAsRoot
